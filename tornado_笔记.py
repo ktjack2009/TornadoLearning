@@ -15,4 +15,30 @@ Title_1='''
 Tornado特点：
 	1. 轻量级web框架，拥有异步非阻塞IO的处理方式
 	2. 出色的抗负载能力
+
+tornado.ioloop:
+    tornado的核心io循环模块，封装了Linux的epoll和BSD的kqueue，高性能的基石
+tornado.httpserver:
+    tornado的HTTP服务器实现
+app.listen:
+    这个方法只能用在单进程中
+Application：web应用框架的核心，是与服务器对接的接口，里面保存了路由信息表，其初始化第一个参数就是一个路由
+    信息映射元祖的列表
+RequestHandler:
+    封装了对应一个请求的所有信息和方法，write（响应信息）就是写响应的一个方法；对应每一种http请求方式（get、post
+    等），把对应的处理逻辑写进同名的成员方法中
+    
+关于多进程：
+    > 虽然tornado提供了一次开启多个进程的方法，但由于每个子进程都会从父进程中复制一份IOLoop实例，那么会影响到每一个子进程，
+    势必会干扰到子进程IOLoop的工作
+    > 所有进程是由一个命令一次开启的，也就无法做到在不停服务的情况下更新代码
+    > 所有进程共享同一个端口，想要分别单独监控每一个进程就很困难
+    > 不建议使用这种多进程的方式，而是手动开启多个进程，并且绑定不同的端口
+
+options:
+    > tornado为我们提供了一个便捷的工具，tornado.options模块——全局参数定义、存储、转换
+tornado.options.define()
+    > name: 选项变量名，须保证全局唯一性
+    > default: 选项变量的默认值
+    > type: 
 '''
