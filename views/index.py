@@ -1,4 +1,6 @@
+import os
 from tornado.web import RequestHandler
+from config import BASE_DIR
 
 
 # 类比Django中的视图，处理请求
@@ -11,6 +13,15 @@ class IndexHandler(RequestHandler):
         # self.write('<p>hello world</p>')
         # self.write('<a href="' + self.reverse_url('link_url') + '">这是链接</a>')
         self.render('index.html')  # 渲染模版
+
+    def post(self, *args, **kwargs):
+        path = os.path.join(BASE_DIR, 'upfile', '1.jpg')
+        file1 = self.request.files['file'][0]  # tornado.httputil.HTTPFile
+        # filename = file1.get('filename')
+        body = file1.get('body')
+        # content_type = file1.get('content_type')
+        with open(path, 'wb') as f:
+            f.write(body)
 
 
 class HomeHandler(RequestHandler):
