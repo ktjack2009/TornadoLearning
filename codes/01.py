@@ -4,7 +4,7 @@ import tornado.options
 import tornado.httpserver
 
 from tornado.web import RequestHandler
-from tornado.options import define, options, parse_command_line
+from tornado.options import define, options, parse_config_file
 
 define("port", type=int, default=8888, help="服务器端口")
 
@@ -20,9 +20,7 @@ class IndexHandler(RequestHandler):
 
 
 if __name__ == '__main__':
-    parse_command_line()    # 从命令行获取参数
-    print(options.port)
-    '''
+    parse_config_file('./config')
     app = tornado.web.Application([
         ('/', IndexHandler),
     ])
@@ -30,4 +28,3 @@ if __name__ == '__main__':
     http_server.bind(options.port)  # 服务器绑定到指定端口
     http_server.start(num_processes=1)  # 开启多进程，num_processes默认为1，None 或 <=0则根据cpu
     tornado.ioloop.IOLoop.current().start()  # 不断的循环询问epoll
-    '''
