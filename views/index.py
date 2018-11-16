@@ -1,4 +1,3 @@
-import json
 from tornado.web import RequestHandler
 
 
@@ -43,5 +42,6 @@ class JsonHandler(RequestHandler):
             'age': 18,
             'gender': 'male'
         }
-        self.write(json.dumps(json_obj))
+        # import json;self.write(json.dumps(json_obj))  # 手动将字典转化为json字符串
+        self.write(json_obj)  # 直接返回字典（返回Content type是json）
         self.finish()
