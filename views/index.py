@@ -9,3 +9,8 @@ class IndexHandler(RequestHandler):
     def get(self, *args, **kwargs):
         # 响应信息
         self.write('hello world')
+
+
+class HomeHandler(RequestHandler):
+    def get(self, *args, **kwargs):
+        self.write('this is home page')
