@@ -1,4 +1,5 @@
 import os
+from tornado import gen
 from tornado.web import RequestHandler, asynchronous
 from tornado.httpclient import AsyncHTTPClient
 from config import BASE_DIR
@@ -110,12 +111,13 @@ import time
 
 class AsyncHandler(RequestHandler):
 
-    @asynchronous
+    @gen.coroutine
     def get(self, *args, **kwargs):
         # 耗时操作
         client = AsyncHTTPClient()
-        client.fetch('http://www.baidu.com', self.on_response)
-        self.write('ok')
+        self.write('before')
+        yield client.fetch('http://www.baidu.com', self.on_response)
+        self.write('over')
 
     def on_response(self, response):
         # client.fetch的回调函数
@@ -123,4 +125,3 @@ class AsyncHandler(RequestHandler):
             self.send_error(500)
         else:
             self.write(response.body)
-        self.finish()
