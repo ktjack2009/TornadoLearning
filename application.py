@@ -16,6 +16,9 @@ class Application(tornado.web.Application):
 
             # 数据库
             (r'/students', index.StudentsHandler),
+
+            # 异步操作
+            (r'/async', index.AsyncHandler)
         ]
         super(Application, self).__init__(handlers=handlers, **config.settings)
         self.db = Mysql()

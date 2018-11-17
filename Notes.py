@@ -109,3 +109,17 @@ L_4 = '''
     > XSRF：跨站请求伪造（同源策略）
     > 用户验证
 '''
+
+L_5 = '''
+同步与异步
+    > 回调函数实现异步
+    > 协程实现异步
+    
+    > tornado提供异步的web请求客户端，用来进行异步web请求
+    > fetch(request, callback)：用于执行一个web请求，并异步响应返回一个tornado.httpclient.HttpResponse
+        request可以是一个url（会转换成HTTPRequest对象），也可以是一个tornado.httpclient.HTTPRequest对象
+    > HTTPRequest：
+        参数：url、method、headers、body
+    > HTTPResponse：Http响应类
+        属性：code、reason、body、error
+'''

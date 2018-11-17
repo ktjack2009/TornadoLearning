@@ -1,5 +1,6 @@
 import os
-from tornado.web import RequestHandler
+from tornado.web import RequestHandler, asynchronous
+from tornado.httpclient import AsyncHTTPClient
 from config import BASE_DIR
 
 
@@ -101,3 +102,25 @@ class StudentsHandler(RequestHandler):
             'num': result[3],
         }
         self.write(students)
+
+
+# 异步
+import time
+
+
+class AsyncHandler(RequestHandler):
+
+    @asynchronous
+    def get(self, *args, **kwargs):
+        # 耗时操作
+        client = AsyncHTTPClient()
+        client.fetch('http://www.baidu.com', self.on_response)
+        self.write('ok')
+
+    def on_response(self, response):
+        # client.fetch的回调函数
+        if response.error:
+            self.send_error(500)
+        else:
+            self.write(response.body)
+        self.finish()
