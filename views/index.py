@@ -12,7 +12,15 @@ class IndexHandler(RequestHandler):
         # 响应信息
         # self.write('<p>hello world</p>')
         # self.write('<a href="' + self.reverse_url('link_url') + '">这是链接</a>')
-        self.render('index.html')  # 渲染模版
+        def f(x, y):
+            return x + y
+
+        params = {
+            'num': 100,
+            'dict_obj': {'context': 200},
+            'function': f
+        }
+        self.render('index.html', **params)  # 渲染模版
 
     def post(self, *args, **kwargs):
         path = os.path.join(BASE_DIR, 'upfile', '1.jpg')

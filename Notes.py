@@ -42,7 +42,7 @@ def async_fetch_manual(url):
     return my_future
 '''
 
-Title_1 = '''
+L_1 = '''
 Tornado特点：
 	1. 轻量级web框架，拥有异步非阻塞IO的处理方式
 	2. 出色的抗负载能力
@@ -74,4 +74,21 @@ tornado.options.define()
     > name: 选项变量名，须保证全局唯一性
     > default: 选项变量的默认值
     > type: 
+'''
+L_2 = '''
+接口调用顺序：
+    > set_default_headers() 如果抛出异常，需要再调用一次，修改header信息
+    > initialize() 初始化
+    > prepare() 预处理方法，类似middleware
+    > http方法：get/post/head/delete/put/patch/optionss
+    > write_error(): 抛出异常后，调用
+    > on_finish: http方法完成后调用
+'''
+
+L_3 = '''
+模版：
+    > 配置路径
+    > 渲染模版 self.render('index.html')
+    > 变量与表达式可以传函数
+    > 流程控制：if/for/while 和Django类似 {% if 表达式 %} {% elif 表达式2 %} {% else %} {% end %}
 '''
