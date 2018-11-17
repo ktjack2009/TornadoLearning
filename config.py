@@ -18,5 +18,6 @@ debug=True
 settings = {
     'debug': True,
     'static_path': os.path.join(BASE_DIR, 'static'),
-    'template_path': os.path.join(BASE_DIR, 'templates')
+    'template_path': os.path.join(BASE_DIR, 'templates'),
+    # 'autoescape': None,   # 关闭转义
 }

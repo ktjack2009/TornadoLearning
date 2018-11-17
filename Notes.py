@@ -87,8 +87,15 @@ L_2 = '''
 
 L_3 = '''
 模版：
-    > 配置路径
+    > 配置路径：template_path
     > 渲染模版 self.render('index.html')
     > 变量与表达式可以传函数
     > 流程控制：if/for/while 和Django类似 {% if 表达式 %} {% elif 表达式2 %} {% else %} {% end %}
+    > 转义：默认开启，关闭转义使用 {% raw str %}(关闭一行) {% autoescape None %}(页面关闭)
+        开启转义：escape()函数
+    > 继承：{% block main %}{% end %} {% extends "base.html" %}
+    
+静态文件：
+    > 配置路径：static_path
+    > StaticFileHandler：可以用来映射静态文件
 '''
