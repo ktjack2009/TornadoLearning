@@ -31,4 +31,6 @@ settings = {
     'static_path': os.path.join(BASE_DIR, 'static'),
     'template_path': os.path.join(BASE_DIR, 'templates'),
     # 'autoescape': None,   # 关闭转义
+    # 'cookie_secret': '123123123', # cookie加密
+    # 'xsrf_cookies': True    # 开启xsrf，post方法
 }
