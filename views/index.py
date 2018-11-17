@@ -87,3 +87,17 @@ class JsonHandler(RequestHandler):
 class TestPHandler(RequestHandler):
     def get(self, *args, **kwargs):
         print(args)  # 正则匹配url得到的参数
+
+
+# 数据库
+class StudentsHandler(RequestHandler):
+    def get(self, *args, **kwargs):
+        connect = self.application.db
+        result = connect.fetch('select * from students where id=1')
+        students = {
+            'id': result[0],
+            'name': result[1],
+            'sex': result[2],
+            'num': result[3],
+        }
+        self.write(students)

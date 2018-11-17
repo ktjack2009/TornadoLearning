@@ -7,6 +7,17 @@ options = {
     'port': 8000,
 }
 
+# mysql配置
+db_options = {
+    'default': {
+        'host': '127.0.0.1',
+        'port': 3306,
+        'user': 'root',
+        'password': '',
+        'dbName': 'my_db',
+    }
+}
+
 # 配置
 '''
 debug=True
