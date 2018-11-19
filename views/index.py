@@ -1,6 +1,6 @@
 import os
 from tornado import gen
-from tornado.web import RequestHandler, asynchronous
+from tornado.web import RequestHandler
 from tornado.httpclient import AsyncHTTPClient
 from config import BASE_DIR
 
