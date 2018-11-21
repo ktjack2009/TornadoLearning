@@ -123,3 +123,8 @@ L_5 = '''
     > HTTPResponse：Http响应类
         属性：code、reason、body、error
 '''
+
+L_6 = '''
+WebSocket
+    > 允许服务器直接向客户端推送数据而不需要客户端进行请求，两者之间可以创建持久性的连接，并允许数据进行双向传送
+'''

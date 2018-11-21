@@ -1,7 +1,7 @@
 import os
-from tornado import gen
 from tornado.web import RequestHandler
-from tornado.httpclient import AsyncHTTPClient
+from tornado.concurrent import run_on_executor
+from concurrent.futures import ThreadPoolExecutor
 from config import BASE_DIR
 
 
@@ -110,18 +110,13 @@ import time
 
 
 class AsyncHandler(RequestHandler):
+    executor = ThreadPoolExecutor(10)
 
-    @gen.coroutine
+    @run_on_executor()
     def get(self, *args, **kwargs):
         # 耗时操作
-        client = AsyncHTTPClient()
-        self.write('before')
-        yield client.fetch('http://www.baidu.com', self.on_response)
-        self.write('over')
+        time.sleep(5)
+        self._callback()
 
-    def on_response(self, response):
-        # client.fetch的回调函数
-        if response.error:
-            self.send_error(500)
-        else:
-            self.write(response.body)
+    def _callback(self):
+        self.write('hello world')
